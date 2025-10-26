@@ -1,4 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MedicinesApi.Repositories;
+using MedicinesApi.Services;
+using MedicinesApi.Models;
 
 namespace MedicinesApi.ServiceExtensions
 {
@@ -20,6 +23,9 @@ namespace MedicinesApi.ServiceExtensions
                     options.UseSqlServer(connectionString);
                 });
             }
+
+            
+
             return services;
         }
 

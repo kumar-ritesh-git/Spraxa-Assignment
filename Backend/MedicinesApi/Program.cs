@@ -7,13 +7,16 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
-
+// Add Swagger documentation with JWT support
+builder.Services.AddSwaggerDocumentation();
 
 builder.Services.AddScoped<IMedicineService, MedicineService>();
-builder.Services.AddScoped<IMedicineRepository, MedicineRepository>();  
+builder.Services.AddScoped<IMedicineRepository, MedicineRepository>();
 
+// Register user repository & service
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 // InMemory DB
 builder.Services.AddDataServices(builder.Configuration);
@@ -50,7 +53,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-
 
 // Seed some sample data
 app.Services.SeedData();
